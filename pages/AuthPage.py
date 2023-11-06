@@ -19,3 +19,6 @@ class AuthPage:
         WebDriverWait(self.__driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "svg[role='presentation']")))
         self.__driver.find_element(By.CSS_SELECTOR, "#password").send_keys(password)
         self.__driver.find_element(By.CSS_SELECTOR, "#login-submit").click()
+        
+    def get_current_url(self):
+        return self.__driver.current_url
