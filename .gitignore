@@ -1,7 +1,8 @@
 allure*
 .pytest_cache*
 .vscode*
-
+allure-report/*
+allure-files/*
 # # Byte-compiled / optimized / DLL files
 __pycache__/
 conf.ini
