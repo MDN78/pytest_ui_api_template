@@ -1,9 +1,10 @@
 allure*
 .pytest_cache*
 .vscode*
-conf.ini
+
 # # Byte-compiled / optimized / DLL files
 __pycache__/
+conf.ini
 # # *.py[cod]
 # *$py.class
 

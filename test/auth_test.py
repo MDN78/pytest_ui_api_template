@@ -6,7 +6,7 @@ import time
 def test_auth(driver):
     auth_page = AuthPage(driver)
     auth_page.go()
-    auth_page.login_as("salesakk@gmail.com", "111111Atlas")
+    auth_page.login_as("salesakk@gmail.com", "")
     time.sleep(5)
     
     main_page = MainPage(driver)
