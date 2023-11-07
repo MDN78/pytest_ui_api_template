@@ -7,7 +7,8 @@
 2. Установить все зависимости
 3. Запустить тесты `pytest` или `python -m pytest`
 4. Сгенерировать отчет `allure generate allure-files -o allure-report`
-5. Открыть отчет `allure open allure-report`
+5. Открыть отчет `allure open allure-report
+`
 
 ### Стэк:
  - pytest

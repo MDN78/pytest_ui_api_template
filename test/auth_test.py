@@ -4,7 +4,7 @@ import time
 import allure
 
 def test_auth(driver):
-    email = "salesakk@gmail.com"
+    email = ""
     password = ""
     username = "Dimitri"
     auth_page = AuthPage(driver)
