@@ -5,7 +5,9 @@
 ### Шаги:
 1. Склонировать проект `git clone https://github.com/MDN78/pytest_ui_api_template.git`
 2. Установить все зависимости
-3. Запустить тесты `pytest`
+3. Запустить тесты `pytest` или `python -m pytest`
+4. Сгенерировать отчет `allure generate allure-files -o allure-report`
+5. 
 
 ### Стэк:
  - pytest
