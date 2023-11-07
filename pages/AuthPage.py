@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import allure
 
 class AuthPage:
     
@@ -9,9 +10,11 @@ class AuthPage:
         self.url = "https://trello.com/login"
         self.__driver = driver
     
+    @allure.step("Go to authorization page")
     def go(self):
         self.__driver.get(self.url)
-        
+    
+    @allure.step("Authorization with login {email}")  
     def login_as(self, email: str, password: str):
         self.__driver.find_element(By.CSS_SELECTOR, "#user").send_keys(email)
         self.__driver.find_element(By.CSS_SELECTOR, "#login").click()
