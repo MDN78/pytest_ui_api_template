@@ -9,10 +9,10 @@ class ConfigProvider:
         self.config = global_config
     
     # общие методы
-    def get(self, section: str, prop: str):
+    def get(self, section: str, prop: str) -> str:
         return self.config[section].get(prop)
     
-    def getint(self, section: str, prop: str):
+    def getint(self, section: str, prop: str) ->int:
         return self.config[section].getint(prop)
     
     # специфичные методы

@@ -7,6 +7,7 @@ allure-files/*
 __pycache__/
 conf.ini
 geckodriver.log
+test_data.json
 # # *.py[cod]
 # *$py.class
 

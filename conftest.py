@@ -7,7 +7,7 @@ from configuration.ConfigProvider import ConfigProvider
 
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
-
+from testdata.DataProvider import DataProvider
 
 
 
@@ -34,24 +34,32 @@ def driver():
 @pytest.fixture
 def api_client() -> BoardApi:
     url = ConfigProvider().get("api", "base_url")
-    return BoardApi(url, "        ")
+    token = DataProvider().get_token()
+    return BoardApi(url, token)
 
 @pytest.fixture
 def api_client_no_auth() -> BoardApi:
     url = ConfigProvider().get("api", "base_url")
-    return BoardApi(url, "")
+    token = DataProvider().get_token()
+    return BoardApi(url, token)
 
 @pytest.fixture
 def dummy_board_id() -> str:
     url = ConfigProvider().get("api", "base_url")
-    api = BoardApi(url, "     ")
+    token = DataProvider().get_token()
+    api = BoardApi(url, token)
     resp = api.create_board("Board to be deleted").get("id")
     return resp
 
 @pytest.fixture
 def delete_board() -> str:
-    url = ConfigProvider().get("api", "base_url")
     dictionary = {"board_id": ""}
     yield dictionary
-    api = BoardApi(url, "    ")
+    url = ConfigProvider().get("api", "base_url")
+    token = DataProvider().get_token()
+    api = BoardApi(url, token)
     api.delete_board_by_id(dictionary.get("board_id"))
+    
+@pytest.fixture
+def testdata() -> dict:
+    return DataProvider()

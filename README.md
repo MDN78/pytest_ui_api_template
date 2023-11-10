@@ -23,7 +23,10 @@
   - ./pages - описание страниц
   - ./api - хелперы по работе с API
   - .db/ - хелперы по работе с базой данных 
-  - test_config.ini - настройки для тестов
+  - ./configuration/ConfigProvider  - провайдер настроек
+    - test_config.ini - настройки для тестов
+  - ./testdata/DataProvider - провайдер тестовых данных
+    - test_data.json - тестовые данные
 
 
  ### Полезные ссылки:

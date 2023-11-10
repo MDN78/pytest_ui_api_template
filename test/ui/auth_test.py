@@ -5,11 +5,11 @@ import allure
 import pytest
 
 
-@pytest.mark.skip
-def test_auth(driver):
-    email = "   "
-    password = "   "
-    username = "Dimitri"
+# @pytest.mark.skip
+def test_auth(driver, testdata: dict):
+    email = testdata.get("email")
+    password = testdata.get("password")
+    username = testdata.get("username")
     auth_page = AuthPage(driver)
     auth_page.go()
     auth_page.login_as(email, password)
