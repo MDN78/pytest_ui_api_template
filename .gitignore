@@ -6,6 +6,7 @@ allure-files/*
 # # Byte-compiled / optimized / DLL files
 __pycache__/
 conf.ini
+geckodriver.log
 # # *.py[cod]
 # *$py.class
 

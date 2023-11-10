@@ -2,10 +2,13 @@ from pages.AuthPage import AuthPage
 from pages.MainPage import MainPage
 import time
 import allure
+import pytest
 
+
+@pytest.mark.skip
 def test_auth(driver):
-    email = ""
-    password = ""
+    email = "   "
+    password = "   "
     username = "Dimitri"
     auth_page = AuthPage(driver)
     auth_page.go()

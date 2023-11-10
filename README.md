@@ -23,14 +23,17 @@
   - ./pages - описание страниц
   - ./api - хелперы по работе с API
   - .db/ - хелперы по работе с базой данных 
+  - test_config.ini - настройки для тестов
 
 
  ### Полезные ссылки:
 
  - [Подсказка по Markdown](https://www.markdownguide.org/cheat-sheet/)
  - [Генератор файла .gitignore](https://www.toptal.com/developers/gitignore/)
+ - [Trello API documentations](https://developer.atlassian.com/cloud/trello/rest/api-group-actions/#api-actions-id-get)
 
 ### Библиотеки
  - pip3 install pytest
  - pip3 install selenium
- - pip3 install allure
+ - pip3 install allure-pytest
+ - pip3 install requests
