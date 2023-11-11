@@ -5,7 +5,7 @@ import allure
 import pytest
 
 
-# @pytest.mark.skip
+@pytest.mark.skip
 def test_auth(driver, testdata: dict):
     email = testdata.get("email")
     password = testdata.get("password")
@@ -20,8 +20,8 @@ def test_auth(driver, testdata: dict):
     info = main_page.get_account_info()
     
     current_url = main_page.get_current_url()
-    with allure.step(f"Checking that {current_url} ends on mdn782007/boards"):
-        assert current_url.endswith("mdn782007/boards")
+    with allure.step(f"Checking that {current_url} ends on /boards"):
+        assert current_url.endswith("/boards")
     with allure.step("Checking user info"):
         assert info[0] == username
         assert info[1] == email

@@ -3,6 +3,7 @@ allure*
 .vscode*
 allure-report/*
 allure-files/*
+.idea
 # # Byte-compiled / optimized / DLL files
 __pycache__/
 conf.ini

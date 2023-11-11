@@ -52,6 +52,27 @@ def dummy_board_id() -> str:
     return resp
 
 @pytest.fixture
+def dummy_list_id() -> str:
+    url = ConfigProvider().get("api", "base_url")
+    token = DataProvider().get_token()
+    api = BoardApi(url, token)
+    board = api.create_board("Board to be deleted").get("id")
+    resp = api.create_list("List for test", board).get("id")
+    return resp
+
+@pytest.fixture
+def dummy_card_id() -> list:
+    url = ConfigProvider().get("api", "base_url")
+    token = DataProvider().get_token()
+    api = BoardApi(url, token)
+    board = api.create_board("Board to be deleted").get("id")
+    resp = api.create_list("List for test 2", board).get("id")
+    card = api.create_card("New test card",resp)
+    return [board, card["id"], resp]
+
+
+    
+@pytest.fixture
 def delete_board() -> str:
     dictionary = {"board_id": ""}
     yield dictionary

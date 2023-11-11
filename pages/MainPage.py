@@ -36,6 +36,7 @@ class MainPage:
             "name": "token",
             "value": self.data.get_token()
         }
+        self.__driver.add_cookie(cookie)
 
 
     
