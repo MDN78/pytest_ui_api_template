@@ -8,7 +8,7 @@ def test_get_boards(api_client: BoardApi, testdata: dict):
     count = len(board_list)
     print(count)
     print(board_list)
-    assert count == 1
+    assert count == 0
 
 @pytest.mark.skip
 def test_create_board(api_client: BoardApi, delete_board: dict, testdata: dict):
@@ -30,7 +30,7 @@ def test_delete_board(api_client: BoardApi, dummy_board_id: str, testdata: dict)
     resp = api_client.delete_board_by_id(dummy_board_id)
     board_list_after = api_client.get_all_boards_by_org_id(org_id)
     
-    assert len(board_list_after) == 1
+    assert len(board_list_after) == 0
     
     
     

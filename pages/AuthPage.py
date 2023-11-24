@@ -4,9 +4,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import allure
 from configuration.ConfigProvider import ConfigProvider
+from testdata.DataProvider import DataProvider
 
 class AuthPage:
-    
+
     def __init__(self, driver: WebDriver) ->None:
         url = ConfigProvider().get("ui", "base_url")
         self.url = f"{url}/login"
@@ -24,6 +25,8 @@ class AuthPage:
         WebDriverWait(self.__driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "svg[role='presentation']")))
         self.__driver.find_element(By.CSS_SELECTOR, "#password").send_keys(password)
         self.__driver.find_element(By.CSS_SELECTOR, "#login-submit").click()
-        
+    
+    @allure.step("Get current url")
     def get_current_url(self):
         return self.__driver.current_url
+    

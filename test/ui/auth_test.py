@@ -25,3 +25,4 @@ def test_auth(driver, testdata: dict):
     with allure.step("Checking user info"):
         assert info[0] == username
         assert info[1] == email
+

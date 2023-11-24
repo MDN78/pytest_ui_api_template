@@ -21,3 +21,6 @@ class DataProvider:
     # специфичные методы
     def get_token(self) -> str:
         return self.data.get("token")
+    
+    # def get_org_id(self) -> str:
+    #     return self.data.get("org_id")
