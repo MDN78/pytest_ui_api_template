@@ -46,7 +46,7 @@ def test_delete_board(driver_auth):
         assert current_url.endswith("/boards")
 
 
-# @pytest.mark.skip
+@pytest.mark.skip
 def test_create_list(driver_auth, dummy_board_id: str, api_client: BoardApi):
     time.sleep(3)
     main_page = MainPage(driver_auth)
@@ -56,24 +56,26 @@ def test_create_list(driver_auth, dummy_board_id: str, api_client: BoardApi):
     api_client.delete_board_by_id(dummy_board_id)
 
 
+@pytest.mark.skip
+def test_create_card(driver_auth, dummy_list_id: list, api_client: BoardApi):
+    main_page = MainPage(driver_auth)
+    main_page.select_board()
+    main_page.create_card("New card")
+    time.sleep(3)
+    api_client.delete_board_by_id(dummy_list_id[1])
+
 
 @pytest.mark.skip 
-def test_board(driver_auth, api_client: BoardApi, testdata: dict):
+def test_create_two_lists(driver_auth, dummy_two_lists_id: list):
     main_page = MainPage(driver_auth)
-    main_page.open_create_form()
-    time.sleep(2)
-    
-    org_id = testdata.get("org_id")
-    board_list = api_client.get_all_boards_by_org_id(org_id)
-    print(board_list)
-
+    main_page.select_board()
+    time.sleep(4)
 
 @pytest.mark.skip
-def test_delete_board_(driver, dummy_board_id: str, testdata: dict):
-    email = testdata.get("email")
-    password = testdata.get("password")
-    username = testdata.get("username")
-    auth_page = AuthPage(driver)
-    auth_page.go()
-    auth_page.login_as(email, password)
-    time.sleep(5)
+def test_drag_and_drop(driver_auth, dummy_two_lists_id: list, api_client: BoardApi):
+    main_page = MainPage(driver_auth)
+    main_page.select_board()
+    api_client.create_card("new card", dummy_two_lists_id[1])
+    main_page.test_drag_and_drop_onto_element()
+    time.sleep(3)
+    api_client.delete_board_by_id(dummy_two_lists_id[0])

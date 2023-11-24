@@ -53,13 +53,24 @@ def dummy_board_id() -> str:
     return resp
 
 @pytest.fixture
-def dummy_list_id() -> str:
+def dummy_list_id() -> list:
     url = ConfigProvider().get("api", "base_url")
     token = DataProvider().get_token()
     api = BoardApi(url, token)
     board = api.create_board("Board to be deleted").get("id")
     resp = api.create_list("List for test", board).get("id")
-    return resp
+    return [resp, board]
+
+@pytest.fixture
+def dummy_two_lists_id() -> list:
+    url = ConfigProvider().get("api", "base_url")
+    token = DataProvider().get_token()
+    api = BoardApi(url, token)
+    board = api.create_board("Board to be deleted").get("id")
+    resp1 = api.create_list("List number 1 for test", board).get("id")
+    resp2 = api.create_list("List number 2 for test", board).get("id")
+    return [board, resp1, resp2]
+
 
 @pytest.fixture
 def dummy_card_id() -> list:

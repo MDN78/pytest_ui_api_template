@@ -1,10 +1,23 @@
 # pytest_ui_api_template
 
-## Шаблон для автоматизации тестирования на puthon 
+## Шаблон для автоматизации тестирования на python на примере TRELLO.COM
 
 ### Шаги:
 1. Склонировать проект `git clone https://github.com/MDN78/pytest_ui_api_template.git`
-2. Установить все зависимости
+2. Установить все зависимости, в том числе:
+ - Создать файл `test_data.json` в корневой папке проекта
+ - Внести данные по тестируемому аккаунту в файл `test_data.json`: 
+```
+{
+    "token": "_____________",
+    "email": "_____________",
+    "password": "__________",
+    "username": "__________",
+    "org_id": "____________"
+}
+```
+
+
 3. Запустить тесты `pytest` или `python -m pytest`
 4. Сгенерировать отчет `allure generate allure-files -o allure-report`
 5. Открыть отчет `allure open allure-report

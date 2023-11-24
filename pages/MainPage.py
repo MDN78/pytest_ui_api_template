@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from testdata.DataProvider import DataProvider
 from configuration.ConfigProvider import ConfigProvider
+from selenium.webdriver import ActionChains
 import allure
 
 
@@ -76,3 +77,18 @@ class MainPage:
         WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "textarea[class=oe8RymzptORQ7h]"))).send_keys(list_name)
         WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.bxgKMAm3lq5BpA.SdamsUKjxSBwGb.SEj5vUdI3VvxDc"))).click()
         
+    @allure.step("Create new card {card_name}")
+    def create_card(self, card_name: str):
+        WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.O9vivwyDxMqo3q.bxgKMAm3lq5BpA.iUcMblFAuq9LKn.PnEv2xIWy3eSui.SEj5vUdI3VvxDc"))).click()
+        WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "textarea[class=qJv26NWQGVKzI9]"))).send_keys(card_name)
+        WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.bxgKMAm3lq5BpA.SdamsUKjxSBwGb.SEj5vUdI3VvxDc"))).click()
+        
+        
+    def test_drag_and_drop_onto_element(self):
+
+
+        draggable = self.__driver.find_element(By.CSS_SELECTOR, "div.KWQlnMvysRK4fI.ui-droppable")
+        droppable = self.__driver.find_element(By.CSS_SELECTOR, "ol[class=RD2CmKQFZKidd6]")
+        ActionChains(self.__driver)\
+            .drag_and_drop(draggable, droppable)\
+            .perform()
