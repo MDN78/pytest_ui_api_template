@@ -18,9 +18,10 @@ def test_create_board(driver, api_client: BoardApi, testdata: dict):
     main_page.fill_board_name("New board UI")
     main_page.click_create_button()
     
-    # current_url = main_page.get_current_url()
-    # with allure.step(f"Checking that {current_url} ends on /new-board-ui"):
-    #     assert current_url.endswith("/new-board-ui")
+    time.sleep(3)
+    current_url = main_page.get_current_url()
+    with allure.step(f"Checking that {current_url} ends on /new-board-ui"):
+        assert current_url.endswith("/new-board-ui")
     
     org_id = testdata.get("org_id")
     info = api_client.get_all_boards_by_org_id(org_id)
@@ -45,7 +46,6 @@ def test_delete_board(driver_auth):
     with allure.step(f"Checking that {current_url} ends on /boards"):
         assert current_url.endswith("/boards")
 
-
 @pytest.mark.skip
 def test_create_list(driver_auth, dummy_board_id: str, api_client: BoardApi):
     time.sleep(3)
@@ -55,7 +55,6 @@ def test_create_list(driver_auth, dummy_board_id: str, api_client: BoardApi):
     time.sleep(3)
     api_client.delete_board_by_id(dummy_board_id)
 
-
 @pytest.mark.skip
 def test_create_card(driver_auth, dummy_list_id: list, api_client: BoardApi):
     main_page = MainPage(driver_auth)
@@ -63,7 +62,6 @@ def test_create_card(driver_auth, dummy_list_id: list, api_client: BoardApi):
     main_page.create_card("New card")
     time.sleep(3)
     api_client.delete_board_by_id(dummy_list_id[1])
-
 
 @pytest.mark.skip 
 def test_create_two_lists(driver_auth, dummy_two_lists_id: list):
@@ -76,6 +74,15 @@ def test_drag_and_drop(driver_auth, dummy_two_lists_id: list, api_client: BoardA
     main_page = MainPage(driver_auth)
     main_page.select_board()
     api_client.create_card("new card", dummy_two_lists_id[1])
-    main_page.test_drag_and_drop_onto_element()
+    main_page.drag_and_drop_onto_element()
     time.sleep(3)
     api_client.delete_board_by_id(dummy_two_lists_id[0])
+    
+@pytest.mark.skip
+def test_update_card(driver_auth, dummy_card_id: list, api_client: BoardApi):
+    main_page = MainPage(driver_auth)
+    main_page.select_board()
+    name = main_page.update_card("Name for update")
+    assert name == "Name for update"
+    api_client.delete_board_by_id(dummy_card_id[0])
+

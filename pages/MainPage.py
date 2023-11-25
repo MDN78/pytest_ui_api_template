@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from testdata.DataProvider import DataProvider
 from configuration.ConfigProvider import ConfigProvider
 from selenium.webdriver import ActionChains
+from selenium import webdriver
 import allure
 
 
@@ -17,7 +18,7 @@ class MainPage:
     
     @allure.step("Get current url")  
     def get_current_url(self) -> str:
-        # self.__driver.implicitly_wait(2)
+        
         return self.__driver.current_url
     
     @allure.step("Open right side menu")
@@ -30,7 +31,6 @@ class MainPage:
         fields = container.find_elements(By.CSS_SELECTOR, "div")
         name = fields[0].text
         email = fields[1].text
-        
         return [name, email]
 
     @allure.step("Open create form")
@@ -56,9 +56,6 @@ class MainPage:
         WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.Bp80TGmc9hQIdE.bxgKMAm3lq5BpA.V_9lMAQOdk_AYt.SEj5vUdI3VvxDc"))).click()
         WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.a72r81xglmtLCW.bxgKMAm3lq5BpA.KpU415sFFvOzGZ.PnEv2xIWy3eSui.SEj5vUdI3VvxDc"))).click()
 
-    
-    
-    
     @allure.step("Set board name {board_name}")
     def fill_board_name(self, board_name: str):
         self.__driver.find_element(By.CSS_SELECTOR, "input[data-testid=create-board-title-input]").send_keys(board_name)
@@ -83,12 +80,19 @@ class MainPage:
         WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "textarea[class=qJv26NWQGVKzI9]"))).send_keys(card_name)
         WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button.bxgKMAm3lq5BpA.SdamsUKjxSBwGb.SEj5vUdI3VvxDc"))).click()
         
-        
-    def test_drag_and_drop_onto_element(self):
-
-
+    @allure.step("Drag and drop card to another list")
+    def drag_and_drop_onto_element(self):
         draggable = self.__driver.find_element(By.CSS_SELECTOR, "div.KWQlnMvysRK4fI.ui-droppable")
         droppable = self.__driver.find_element(By.CSS_SELECTOR, "ol[class=RD2CmKQFZKidd6]")
         ActionChains(self.__driver)\
             .drag_and_drop(draggable, droppable)\
             .perform()
+    
+    @allure.step("Update title card - new name {new_card_name}")
+    def update_card(self, new_card_name: str):
+        WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div[class=amUfYqLTZOvGsn]"))).click()
+        WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "textarea.mod-card-back-title.js-card-detail-title-input"))).clear()
+        WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "textarea.mod-card-back-title.js-card-detail-title-input"))).send_keys(new_card_name)
+        WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a.icon-md.icon-close.dialog-close-button.js-close-window"))).click()
+        new_name = WebDriverWait(self.__driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a.NdQKKfeqJDDdX3")))
+        return new_name.text
