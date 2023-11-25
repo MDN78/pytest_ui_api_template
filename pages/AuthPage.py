@@ -13,11 +13,11 @@ class AuthPage:
         self.url = f"{url}/login"
         self.__driver = driver
     
-    @allure.step("Go to authorization page")
+    @allure.step("UI. Go to authorization page")
     def go(self):
         self.__driver.get(self.url)
     
-    @allure.step("Authorization with login {email}")  
+    @allure.step("UI. Authorization with login {email}")  
     def login_as(self, email: str, password: str):
         self.__driver.find_element(By.CSS_SELECTOR, "#user").send_keys(email)
         self.__driver.find_element(By.CSS_SELECTOR, "#login").click()
@@ -26,7 +26,7 @@ class AuthPage:
         self.__driver.find_element(By.CSS_SELECTOR, "#password").send_keys(password)
         self.__driver.find_element(By.CSS_SELECTOR, "#login-submit").click()
     
-    @allure.step("Get current url")
+    @allure.step("UI. Get current url")
     def get_current_url(self):
         return self.__driver.current_url
     
