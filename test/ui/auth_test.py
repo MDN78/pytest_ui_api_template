@@ -4,8 +4,9 @@ import time
 import allure
 import pytest
 
-
-@pytest.mark.skip
+@allure.epic("UI tests")
+@allure.severity(severity_level='normal')
+@allure.title("Authorization")
 def test_auth(driver, testdata: dict):
     email = testdata.get("email")
     password = testdata.get("password")

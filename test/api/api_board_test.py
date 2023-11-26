@@ -1,7 +1,10 @@
 from api.BoardApi import BoardApi
 import pytest
+import allure
 
-@pytest.mark.skip
+@allure.epic("API tests")
+@allure.severity(severity_level='normal')
+@allure.title("Get lists of all boards")
 def test_get_boards(api_client: BoardApi, testdata: dict):
     org_id = testdata.get("org_id")
     board_list = api_client.get_all_boards_by_org_id(org_id)
@@ -10,7 +13,9 @@ def test_get_boards(api_client: BoardApi, testdata: dict):
     print(board_list)
     assert count == 0
 
-@pytest.mark.skip
+@allure.epic("API tests")
+@allure.severity(severity_level='normal')
+@allure.title("Create new board")
 def test_create_board(api_client: BoardApi, delete_board: dict, testdata: dict):
     org_id = testdata.get("org_id")
     board_list_before = api_client.get_all_boards_by_org_id(org_id)
@@ -23,7 +28,9 @@ def test_create_board(api_client: BoardApi, delete_board: dict, testdata: dict):
     
     assert len(board_list_after) - len(board_list_before) == 1
 
-@pytest.mark.skip
+@allure.epic("API tests")
+@allure.severity(severity_level='normal')
+@allure.title("Delete board")
 def test_delete_board(api_client: BoardApi, dummy_board_id: str, testdata: dict):
     org_id = testdata.get("org_id")
     board_list_before = api_client.get_all_boards_by_org_id(org_id)

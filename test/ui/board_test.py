@@ -3,9 +3,10 @@ from pages.MainPage import MainPage
 from api.BoardApi import BoardApi
 import time
 import allure
-import pytest
 
-@pytest.mark.skip
+@allure.epic("UI tests")
+@allure.severity(severity_level='normal')
+@allure.title("Create board")
 def test_create_board(driver, api_client: BoardApi, testdata: dict):
     email = testdata.get("email")
     password = testdata.get("password")
@@ -30,7 +31,9 @@ def test_create_board(driver, api_client: BoardApi, testdata: dict):
     assert board_name == "New board UI"
     api_client.delete_board_by_id(board_id)
 
-@pytest.mark.skip
+@allure.epic("UI tests")
+@allure.severity(severity_level='normal')
+@allure.title("Delete board")
 def test_delete_board(driver_auth):
     main_page = MainPage(driver_auth)
     main_page.open_create_form()
@@ -46,7 +49,9 @@ def test_delete_board(driver_auth):
     with allure.step(f"Checking that {current_url} ends on /boards"):
         assert current_url.endswith("/boards")
 
-@pytest.mark.skip
+@allure.epic("UI tests")
+@allure.severity(severity_level='normal')
+@allure.title("Create lists")
 def test_create_list(driver_auth, dummy_board_id: str, api_client: BoardApi):
     dummy_list_name = "New list"
     main_page = MainPage(driver_auth)
@@ -55,7 +60,9 @@ def test_create_list(driver_auth, dummy_board_id: str, api_client: BoardApi):
     assert list_name == dummy_list_name
     api_client.delete_board_by_id(dummy_board_id)
 
-@pytest.mark.skip
+@allure.epic("UI tests")
+@allure.severity(severity_level='normal')
+@allure.title("Create card")
 def test_create_card(driver_auth, dummy_list_id: list, api_client: BoardApi):
     card_name = "New card"
     main_page = MainPage(driver_auth)
@@ -64,7 +71,9 @@ def test_create_card(driver_auth, dummy_list_id: list, api_client: BoardApi):
     assert created_card == card_name
     api_client.delete_board_by_id(dummy_list_id[1])
 
-@pytest.mark.skip
+@allure.epic("UI tests")
+@allure.severity(severity_level='normal')
+@allure.title("Move card to another list")
 def test_drag_and_drop(driver_auth, dummy_two_lists_id: list, api_client: BoardApi):
     main_page = MainPage(driver_auth)
     main_page.select_board()
@@ -73,8 +82,10 @@ def test_drag_and_drop(driver_auth, dummy_two_lists_id: list, api_client: BoardA
     time.sleep(3)
     assert get_moved_card_name == "new card"
     api_client.delete_board_by_id(dummy_two_lists_id[0])
-    
-@pytest.mark.skip
+
+@allure.epic("UI tests")
+@allure.severity(severity_level='normal')
+@allure.title("Update name of card")
 def test_update_card(driver_auth, dummy_card_id: list, api_client: BoardApi):
     main_page = MainPage(driver_auth)
     main_page.select_board()
@@ -82,7 +93,9 @@ def test_update_card(driver_auth, dummy_card_id: list, api_client: BoardApi):
     assert name == "Name for update"
     api_client.delete_board_by_id(dummy_card_id[0])
 
-@pytest.mark.skip
+@allure.epic("UI tests")
+@allure.severity(severity_level='normal')
+@allure.title("Delete card")
 def test_delete_card(driver_auth, dummy_card_id: list, api_client: BoardApi):
     main_page = MainPage(driver_auth)
     main_page.select_board()
