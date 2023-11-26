@@ -14,7 +14,7 @@ class AuthPage:
         self.__driver = driver
     
     @allure.step("UI. Go to authorization page")
-    def go(self):
+    def go(self) -> None:
         self.__driver.get(self.url)
     
     @allure.step("UI. Authorization with login {email}")  

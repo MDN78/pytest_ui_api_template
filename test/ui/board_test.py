@@ -48,34 +48,30 @@ def test_delete_board(driver_auth):
 
 @pytest.mark.skip
 def test_create_list(driver_auth, dummy_board_id: str, api_client: BoardApi):
-    time.sleep(3)
+    dummy_list_name = "New list"
     main_page = MainPage(driver_auth)
     main_page.select_board()
-    main_page.create_list("New list")
-    time.sleep(3)
+    list_name = main_page.create_list(dummy_list_name)
+    assert list_name == dummy_list_name
     api_client.delete_board_by_id(dummy_board_id)
 
 @pytest.mark.skip
 def test_create_card(driver_auth, dummy_list_id: list, api_client: BoardApi):
+    card_name = "New card"
     main_page = MainPage(driver_auth)
     main_page.select_board()
-    main_page.create_card("New card")
-    time.sleep(3)
+    created_card = main_page.create_card(card_name)
+    assert created_card == card_name
     api_client.delete_board_by_id(dummy_list_id[1])
-
-@pytest.mark.skip 
-def test_create_two_lists(driver_auth, dummy_two_lists_id: list):
-    main_page = MainPage(driver_auth)
-    main_page.select_board()
-    time.sleep(4)
 
 @pytest.mark.skip
 def test_drag_and_drop(driver_auth, dummy_two_lists_id: list, api_client: BoardApi):
     main_page = MainPage(driver_auth)
     main_page.select_board()
     api_client.create_card("new card", dummy_two_lists_id[1])
-    main_page.drag_and_drop_onto_element()
+    get_moved_card_name = main_page.drag_and_drop_onto_element()
     time.sleep(3)
+    assert get_moved_card_name == "new card"
     api_client.delete_board_by_id(dummy_two_lists_id[0])
     
 @pytest.mark.skip
@@ -86,3 +82,13 @@ def test_update_card(driver_auth, dummy_card_id: list, api_client: BoardApi):
     assert name == "Name for update"
     api_client.delete_board_by_id(dummy_card_id[0])
 
+@pytest.mark.skip
+def test_delete_card(driver_auth, dummy_card_id: list, api_client: BoardApi):
+    main_page = MainPage(driver_auth)
+    main_page.select_board()
+    main_page.delete_card()
+    all_cards_on_list = api_client.get_card_on_list(dummy_card_id[2])
+    assert len(all_cards_on_list) == 2
+    api_client.delete_board_by_id(dummy_card_id[0])
+
+    
