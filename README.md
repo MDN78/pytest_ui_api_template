@@ -6,7 +6,7 @@
 1. Склонировать проект `git clone https://github.com/MDN78/pytest_ui_api_template.git`
 2. Установить все зависимости, в том числе:
  - Создать файл `test_data.json` в корневой папке проекта
- - Внести данные по тестируемому аккаунту в файл `test_data.json`: 
+ - Внести данные по тестируемому аккаунту в файл `test_data.json`:
 ```
 {
     "token": "_____________",
@@ -36,7 +36,7 @@
   - ./test - тесты
   - ./pages - описание страниц
   - ./api - хелперы по работе с API
-  - .db/ - хелперы по работе с базой данных 
+  - .db/ - хелперы по работе с базой данных
   - ./configuration/ConfigProvider  - провайдер настроек
     - test_config.ini - настройки для тестов
   - ./testdata/DataProvider - провайдер тестовых данных
@@ -50,3 +50,4 @@
  - [Trello API documentations](https://developer.atlassian.com/cloud/trello/rest/api-group-actions/#api-actions-id-get)
  - [About pip freeze](https://pip.pypa.io/en/stable/cli/pip_freeze/)
 
+Test write
