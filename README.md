@@ -69,8 +69,12 @@
 
 ## Allure report
 Отчет позволяет получить детальную информацию по все шагам тестов, включая скриншоты и log - файлы
+<<<<<<< HEAD
 
 ![](https://github.com/MDN78/trello/blob/master/assets/allure_report_2.PNG)
+=======
+![](assets/allure_report.PNG)
+>>>>>>> 5ce56f5ba9d2e810ac05bc190139c7df0f8536b0
 
  ### Полезные ссылки:
 
